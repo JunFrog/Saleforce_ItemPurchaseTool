@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Item Purchase Tool</label>
+    <motif>Custom19: Handsaw</motif>
+    <flexiPage>ItemPurchaseToolPage</flexiPage>
+    <description
+  >One-page application to allow users to create a purchase from the item catalog.</description>
+</CustomTab>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsManager__c</fullName>
+    <label>Is Manager</label>
+    <description
+  >Indicates whether this user has manager-level permissions to create new catalog items</description>
+    <inlineHelpText
+  >Check this box if the user should be able to create new items in the Item Purchase Tool</inlineHelpText>
+    <type>Checkbox</type>
+    <defaultValue>false</defaultValue>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price__c</fullName>
+    <label>Price</label>
+    <description
+  >Unit price of the item used as default UnitCost on purchase lines</description>
+    <inlineHelpText>Enter the price for one unit of this item</inlineHelpText>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+</CustomField>

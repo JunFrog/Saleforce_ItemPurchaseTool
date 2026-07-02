@@ -1,0 +1,86 @@
+<template>
+  <template if:true={item}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-modal="true"
+      aria-labelledby="modal-heading-detail"
+      class="slds-modal slds-fade-in-open"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            onclick={handleClose}
+            title="Close"
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              size="small"
+            ></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2
+            id="modal-heading-detail"
+            class="slds-modal__title slds-hyphenate"
+          >
+            {item.name}
+          </h2>
+        </header>
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-detail"
+        >
+          <template if:true={hasImage}>
+            <img src={item.imageUrl} alt={item.name} class="detail-image" />
+          </template>
+          <lightning-record-view-form
+            record-id={item.itemId}
+            object-api-name="Item__c"
+          >
+            <div class="slds-grid slds-wrap slds-gutters">
+              <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field
+                  field-name="Name"
+                ></lightning-output-field>
+              </div>
+              <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field
+                  field-name="Price__c"
+                ></lightning-output-field>
+              </div>
+              <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field
+                  field-name="Type__c"
+                ></lightning-output-field>
+              </div>
+              <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field
+                  field-name="Family__c"
+                ></lightning-output-field>
+              </div>
+              <div class="slds-col slds-size_1-of-1">
+                <lightning-output-field
+                  field-name="Description__c"
+                ></lightning-output-field>
+              </div>
+            </div>
+          </lightning-record-view-form>
+        </div>
+        <footer class="slds-modal__footer">
+          <lightning-button
+            label="Close"
+            variant="neutral"
+            onclick={handleClose}
+          ></lightning-button>
+          <lightning-button
+            label="Add to Cart"
+            variant="brand"
+            onclick={handleAdd}
+          ></lightning-button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

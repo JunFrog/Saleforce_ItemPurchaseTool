@@ -1,0 +1,73 @@
+<template>
+  <section
+    role="dialog"
+    tabindex="-1"
+    aria-modal="true"
+    aria-labelledby="modal-heading-cart"
+    class="slds-modal slds-fade-in-open slds-modal_large"
+  >
+    <div class="slds-modal__container">
+      <header class="slds-modal__header">
+        <button
+          class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+          onclick={handleClose}
+          title="Close"
+        >
+          <lightning-icon
+            icon-name="utility:close"
+            size="small"
+          ></lightning-icon>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 id="modal-heading-cart" class="slds-modal__title slds-hyphenate">
+          Cart
+        </h2>
+      </header>
+      <div
+        class="slds-modal__content slds-p-around_medium"
+        id="modal-content-cart"
+      >
+        <template if:true={isEmpty}>
+          <p class="slds-text-align_center slds-text-color_weak">
+            Your cart is empty.
+          </p>
+        </template>
+        <template if:false={isEmpty}>
+          <lightning-datatable
+            key-field="itemId"
+            data={cartItems}
+            columns={columns}
+            onrowaction={handleRowAction}
+            onsave={handleCellChange}
+            draft-values={draftValues}
+          >
+          </lightning-datatable>
+          <div class="slds-m-top_medium slds-text-align_right">
+            <strong>Grand Total: </strong>
+            <lightning-formatted-number
+              value={grandTotal}
+              format-style="currency"
+              currency-code="USD"
+            >
+            </lightning-formatted-number>
+          </div>
+        </template>
+      </div>
+      <footer class="slds-modal__footer">
+        <lightning-button
+          label="Close"
+          variant="neutral"
+          onclick={handleClose}
+        ></lightning-button>
+        <lightning-button
+          label="Checkout"
+          variant="brand"
+          onclick={handleCheckout}
+          disabled={isEmpty}
+        >
+        </lightning-button>
+      </footer>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

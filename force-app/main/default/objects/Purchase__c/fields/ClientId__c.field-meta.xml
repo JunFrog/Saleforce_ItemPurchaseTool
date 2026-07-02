@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Lookup to the Account record that initiated this purchase</description>
+    <inlineHelpText
+  >Select the account (client) associated with this purchase</inlineHelpText>
+    <label>Client</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Purchases</relationshipLabel>
+    <relationshipName>Purchases</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

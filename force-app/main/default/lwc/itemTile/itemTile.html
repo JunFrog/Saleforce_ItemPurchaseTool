@@ -1,0 +1,32 @@
+<template>
+  <div class="slds-card slds-card_boundary item-tile">
+    <div class="slds-card__header slds-grid slds-grid_align-center">
+      <h3 class="slds-text-heading_small slds-truncate" title={item.name}>
+        {item.name}
+      </h3>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+      <template if:true={hasImage}>
+        <img src={item.imageUrl} alt={item.name} class="item-image" />
+      </template>
+      <p class="slds-text-body_small slds-m-top_x-small description">
+        {item.description}
+      </p>
+      <p class="slds-text-body_small slds-m-top_x-small">
+        <strong>Price:</strong> {item.price}
+      </p>
+    </div>
+    <div class="slds-card__footer slds-grid slds-grid_align-spread">
+      <lightning-button
+        label="Details"
+        variant="neutral"
+        onclick={handleDetails}
+      ></lightning-button>
+      <lightning-button
+        label="Add"
+        variant="brand"
+        onclick={handleAdd}
+      ></lightning-button>
+    </div>
+  </div>
+</template>

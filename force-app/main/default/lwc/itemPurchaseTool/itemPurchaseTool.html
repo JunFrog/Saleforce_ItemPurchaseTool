@@ -1,0 +1,160 @@
+<template>
+  <div class="slds-card slds-p-around_medium">
+    <!-- Header Bar -->
+    <div
+      class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_medium header-bar"
+    >
+      <div class="slds-col slds-grid slds-grid_vertical-align-center">
+        <template if:true={isManager}>
+          <lightning-button
+            label="Create Item"
+            variant="brand-outline"
+            icon-name="utility:add"
+            onclick={handleOpenCreateItem}
+            class="slds-m-right_medium"
+          >
+          </lightning-button>
+        </template>
+        <span class="slds-text-heading_small slds-m-right_small"
+          >{accountHeader.name}</span
+        >
+        <span class="slds-text-body_regular slds-m-right_small"
+          >{accountHeader.accountNumber}</span
+        >
+        <span class="slds-text-body_regular">{accountHeader.industry}</span>
+      </div>
+      <div class="slds-col slds-text-align_right">
+        <lightning-button
+          label={cartLabel}
+          variant="neutral"
+          icon-name="utility:cart"
+          onclick={handleOpenCart}
+        >
+        </lightning-button>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="slds-grid slds-gutters">
+      <!-- Items Area -->
+      <div class="slds-col slds-size_3-of-4">
+        <!-- Search -->
+        <div class="slds-m-bottom_medium">
+          <lightning-input
+            type="search"
+            label="Search"
+            placeholder="Search by name or description..."
+            value={searchTerm}
+            onchange={handleSearchChange}
+          >
+          </lightning-input>
+        </div>
+
+        <!-- Item count -->
+        <p class="slds-text-body_small slds-m-bottom_small">
+          Items found: <strong>{itemCount}</strong>
+        </p>
+
+        <!-- Item Grid -->
+        <div class="slds-grid slds-wrap slds-gutters">
+          <template for:each={items} for:item="item">
+            <div
+              key={item.itemId}
+              class="slds-col slds-size_1-of-2 slds-m-bottom_medium"
+            >
+              <c-item-tile
+                item={item}
+                onshowdetails={handleShowDetails}
+                onaddtocart={handleAddToCart}
+              >
+              </c-item-tile>
+            </div>
+          </template>
+          <template if:false={itemCount}>
+            <div class="slds-col slds-size_1-of-1">
+              <p class="slds-text-align_center slds-text-color_weak">
+                No items found.
+              </p>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Filters Sidebar -->
+      <div class="slds-col slds-size_1-of-4 filter-sidebar">
+        <h3 class="slds-text-heading_small slds-m-bottom_small">FILTERS</h3>
+
+        <div class="slds-m-bottom_medium">
+          <p class="slds-text-title_caps slds-m-bottom_x-small">Type:</p>
+          <template for:each={typeOptions} for:item="opt">
+            <div
+              key={opt.value}
+              class="slds-m-left_small slds-m-bottom_xx-small"
+            >
+              <a
+                href="javascript:void(0)"
+                data-value={opt.value}
+                onclick={handleTypeFilter}
+                class={opt.cssClass}
+              >
+                - {opt.label}
+              </a>
+            </div>
+          </template>
+        </div>
+
+        <div>
+          <p class="slds-text-title_caps slds-m-bottom_x-small">Family:</p>
+          <template for:each={familyOptions} for:item="opt">
+            <div
+              key={opt.value}
+              class="slds-m-left_small slds-m-bottom_xx-small"
+            >
+              <a
+                href="javascript:void(0)"
+                data-value={opt.value}
+                onclick={handleFamilyFilter}
+                class={opt.cssClass}
+              >
+                - {opt.label}
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <template if:true={showDetailModal}>
+    <c-item-detail-modal
+      item={selectedItem}
+      onclose={handleCloseDetail}
+      onaddtocart={handleAddToCart}
+    >
+    </c-item-detail-modal>
+  </template>
+
+  <!-- Cart Modal -->
+  <template if:true={showCartModal}>
+    <c-cart-modal
+      cart-items={cartItems}
+      is-checking-out={isCheckingOut}
+      onclose={handleCloseCart}
+      onremoveitem={handleRemoveFromCart}
+      onupdatequantity={handleUpdateQuantity}
+      oncheckout={handleCheckout}
+    >
+    </c-cart-modal>
+  </template>
+
+  <!-- Create Item Modal -->
+  <template if:true={showCreateModal}>
+    <c-create-item-modal
+      is-loading={isCreatingItem}
+      onclose={handleCloseCreateItem}
+      onsaveitem={handleSaveItem}
+    >
+    </c-create-item-modal>
+  </template>
+</template>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ItemId__c</fullName>
+    <description
+  >Master-detail relationship to the Item being purchased on this line</description>
+    <inlineHelpText
+  >The catalog item associated with this purchase line</inlineHelpText>
+    <label>Item</label>
+    <referenceTo>Item__c</referenceTo>
+    <relationshipLabel>Purchase Lines</relationshipLabel>
+    <relationshipName>ItemPurchaseLines</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

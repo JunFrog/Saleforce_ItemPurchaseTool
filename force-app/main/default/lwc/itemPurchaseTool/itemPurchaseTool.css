@@ -1,0 +1,18 @@
+.header-bar {
+  border-bottom: 1px solid #dddbda;
+  padding-bottom: 1rem;
+}
+
+.filter-sidebar {
+  border-left: 1px solid #dddbda;
+  padding-left: 1rem;
+}
+
+.filter-sidebar a {
+  color: #0176d3;
+  text-decoration: none;
+}
+
+.filter-sidebar a:hover {
+  text-decoration: underline;
+}
